@@ -1,0 +1,23 @@
+import { AppConfig, AppLogic, ListItem } from "global.slint";
+import { FormPanel } from "components/form-panel.slint";
+import { ItemPanel } from "components/item-panel.slint";
+import { VerticalBox } from "std-widgets.slint";
+
+export { AppConfig, AppLogic, ListItem}
+
+
+export component AppWindow inherits Window {
+
+    title: "To-Do App Demo Rust/Slint";
+    icon: @image-url("../assets/rust-slint-todolist-demo-icon.png");
+    min-width: 480px;
+    max-width: 600px;
+    background: AppConfig.color_primary.darker(90%);
+    VerticalBox {
+        // List items live here
+        ItemPanel { }
+
+        // Items created here
+        FormPanel { }
+    }
+}

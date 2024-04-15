@@ -1,0 +1,99 @@
+import { AppConfig, AppLogic } from "../global.slint";
+import { HorizontalBox, Button, VerticalBox } from "std-widgets.slint";
+
+export component FormPanel inherits Rectangle {
+    background: AppConfig.color_primary;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: AppConfig.font-size + (AppConfig.font-size * 300%);
+
+    todo-form := HorizontalBox {
+        Rectangle {
+            callback create_new_item();
+            add_button := Button {
+                // text: "+";
+                icon: @image-url("../../assets/icon-add.svg");
+                // width: self.height;
+                // Only allow users to add a new item
+                // if the text input is not empty.
+                enabled: txt-desc.text != "";
+                clicked => {
+                    create_new_item();
+                }
+            }
+
+            create_new_item => {
+                if (txt-desc.text != "") {
+                    AppLogic.put_list_item(
+                        0,
+                        {
+                        completed: false,
+                        description: txt-desc.text,
+                        datetime: "",
+                    });
+                    txt-desc.text = "";
+                    AppLogic.dump_list_items();
+                }
+            }
+
+            // Tooltip
+            Rectangle {
+                // background: red;
+                height: 15px;
+                width: 15px;
+
+                popup := PopupWindow {
+                    Rectangle {
+                        background: #2b2b2b;
+                        height: 20px;
+                        width: 80px;
+                        border-radius: 4px;
+                        x: 5px;
+                        y: -30px;
+
+                        Text {
+                            color: white;
+                            text: "Add Todo";
+                        }
+                    }
+                }
+
+                touch-area := TouchArea {
+                    height: 100%;
+                    width: 100%;
+                    pointer-event => {
+                        popup.show();
+                    }
+                }
+            }
+        }
+
+        txt_desc := Rectangle {
+            in-out property <string> text;
+            background: white;
+
+            border-radius: 5px;
+            border-color: AppConfig.color_tertiary;
+            border-width: 2px;
+
+            input := TextInput {
+                color: AppConfig.color_primary;
+                font-size: AppConfig.font-size;
+                padding-right: 20px;
+                text <=> parent.text;
+                vertical-alignment: center;
+
+                x: parent.x - 50px;
+                width: parent.width - 12px;
+            }
+
+            placeholder := Text {
+                color: AppConfig.color_primary;
+                text: "Add a new TODO";
+                vertical-alignment: center;
+                visible: input.text == "";
+                x: parent.x - 50px;
+            }
+        }
+    }
+}

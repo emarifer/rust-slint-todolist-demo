@@ -1,0 +1,29 @@
+[package]
+name = "rust-slint-todolist-demo"
+version = "0.1.0"
+authors = ["Enrique Marín <enriquemarin_sierra@hotmail.com>"]
+edition = "2021"
+build = "build.rs"
+description = "Rust/Slint desktop to-do list application that uses the Slint GUI framework"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+chrono = "0.4.37"
+resolve-path = "0.1.0"
+rmp-serde = "1.1.2"
+serde = { version = "1.0.197", features = ["derive"] }
+slint = "1.5.1"
+
+[build-dependencies]
+slint-build = "1.5.1"
+
+[lib]
+name = "lib"
+path = "src/lib.rs"
+
+[package.metadata.bundle]
+name = "rust-slint-todolist-demo"
+identifier = "com.emarifer.rust-slint-todolist-demo"
+description = "Rust/Slint desktop to-do list application that uses the Slint GUI framework"
+icon = ["./assets/rust-slint-todolist-demo-icon.png"]

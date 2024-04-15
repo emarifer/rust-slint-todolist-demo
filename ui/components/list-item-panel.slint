@@ -1,0 +1,74 @@
+import { Button, CheckBox, HorizontalBox, VerticalBox } from "std-widgets.slint";
+import { AppConfig, AppLogic } from "../global.slint";
+
+export component ListItemPanel inherits Rectangle {
+    in-out property <bool> completed;
+    in property <string> description;
+    in property <string> datetime;
+    in property <int> id;
+
+    padding: 5px;
+
+    Rectangle {
+        height: 92%;
+        background: AppConfig.color_primary.darker(37%);
+        border-radius: 5px;
+        border-color: AppConfig.color_tertiary;
+        border-width: 1px;
+        drop-shadow-blur: touch-area.has-hover ? 10px : 3px;
+        drop-shadow-color: touch-area.has-hover ? AppConfig.color_primary.darker(87%) : AppConfig.color_primary.darker(50%);
+        drop-shadow-offset-y: touch-area.has-hover ? 5px : 1px;
+        animate drop-shadow-blur {
+            duration: 100ms;
+            easing: ease-out;
+        }
+
+        touch-area := TouchArea { }
+
+        HorizontalBox {
+            CheckBox {
+                checked <=> completed;
+                toggled => {
+                    // debug(AppConfig.list_items[id].description);
+                    AppConfig.list_items[id].completed = completed;
+                    AppLogic.dump_list_items();
+                }
+            }
+
+            VerticalBox {
+                spacing: 8px;
+                Text {
+                    text: description;
+                    font-size: AppConfig.font-size;
+                    color: AppConfig.color_secondary;
+                    horizontal-alignment: left;
+                    vertical-alignment: center;
+                    overflow: elide;
+                }
+
+                Text {
+                    text: datetime;
+                    font-size: 10px;
+                    font-weight: 500;
+                    color: chartreuse;
+                    horizontal-alignment: left;
+                    vertical-alignment: center;
+                }
+            }
+
+            VerticalBox {
+                width: parent.width * 14%;
+
+                Button {
+                    // text: "-";
+                    icon: @image-url("../../assets/icon-delete.svg");
+                    // width: 30px;
+                    clicked => {
+                        AppLogic.pop_list_item(id);
+                        AppLogic.dump_list_items();
+                    }
+                }
+            }
+        }
+    }
+}
