@@ -38,7 +38,6 @@ export component FormPanel inherits Rectangle {
 
             // Tooltip
             Rectangle {
-                // background: red;
                 height: 15px;
                 width: 15px;
 
@@ -89,7 +88,7 @@ export component FormPanel inherits Rectangle {
 
             placeholder := Text {
                 color: AppConfig.color_primary;
-                text: "Add a new TODO";
+                text: "Add a new TODO (maximum 250 characters)";
                 vertical-alignment: center;
                 visible: input.text == "";
                 x: parent.x - 50px;

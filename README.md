@@ -39,11 +39,13 @@ cargo run ~/.todo.dat # ./target/debug/rust-slint-todolist-demo ~/.todo.dat
 >[!NOTE]
 >***We recommend using an IDE for development, along with the [LSP-based IDE integration for .`slint` files](https://github.com/slint-ui/slint/blob/master/tools/lsp/README.md) provided by the library itself. You can also load this project directly into [Visual Studio Code](https://code.visualstudio.com) and install the [Slint extension](https://marketplace.visualstudio.com/items?itemName=Slint.slint).***
 
-#### Screenshot:
+#### Screenshot
+
+Application window with an element popup (opens on double-click) whose text overflows its box:
 
 <div align="center">
 
-<img src="assets/screenshot.png" width="300">
+<img src="assets/screenshot.png" width="400">
 
 </div>
 
@@ -56,7 +58,7 @@ cargo bundle --release
 ```
 
 >[!NOTE]
->***On Linux, if you install the application using the `.deb` file, a `.todo.dat` file will be generated when you press the add TODO button.***
+>***On Linux, if you install the application using the `.deb` file, a `.todo.dat` file will be generated in the user folder when you press the add TODO button. The path of said file can be established if we edit the application preferences from its launcher.***
 
 ## Next Steps
 

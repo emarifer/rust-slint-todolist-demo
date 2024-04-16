@@ -90,9 +90,17 @@ pub fn callback_declare_put_list_item(app: &AppWindow) {
 
     let weak_app = app.as_weak();
     logic.on_put_list_item(move |idx, mut item| {
+        let desc = item.description.trim();
         // Do not allow empty TO-DO
-        if item.description.to_string().trim() == "" {
+        if desc == "" {
             return;
+        }
+
+        // No more than 250 characters are allowed in the description
+        let diff_length = desc.len() - 250;
+        if diff_length > 0 {
+            let trimmed_description = String::from(&desc[0..desc.len() - diff_length]);
+            item.description = trimmed_description.into();
         }
 
         let current_local: DateTime<Local> = Local::now();
