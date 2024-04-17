@@ -18,7 +18,7 @@
 
 <hr />
 
->Yes, just another to-do application, but to try something new you have to start somewhere.
+>🤦 Yes, just another to-do application, but to try something new you have to start somewhere ¯\\\_(ツ)\_/¯.
 
 ## Usage
 
@@ -39,11 +39,11 @@ cargo run ~/.todo.dat # ./target/debug/rust-slint-todolist-demo ~/.todo.dat
 >[!NOTE]
 >***We recommend using an IDE for development, along with the [LSP-based IDE integration for .`slint` files](https://github.com/slint-ui/slint/blob/master/tools/lsp/README.md) provided by the library itself. You can also load this project directly into [Visual Studio Code](https://code.visualstudio.com) and install the [Slint extension](https://marketplace.visualstudio.com/items?itemName=Slint.slint).***
 
-#### Screenshot
-
-Application window with an element popup (opens on double-click) whose text overflows its box:
+#### 🖼️ Screenshot
 
 <div align="center">
+
+###### Application window showing a popup (which opens when double-clicking) of an item whose text overflows its box:
 
 <img src="assets/screenshot.png" width="400">
 
