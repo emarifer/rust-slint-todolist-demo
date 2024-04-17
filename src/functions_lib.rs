@@ -96,12 +96,16 @@ pub fn callback_declare_put_list_item(app: &AppWindow) {
             return;
         }
 
-        // No more than 250 characters are allowed in the description
-        let diff_length = desc.len() - 250;
-        if diff_length > 0 {
-            let trimmed_description = String::from(&desc[0..desc.len() - diff_length]);
-            item.description = trimmed_description.into();
+        // Do not allow more than 250 characters in the description
+        let mut trimmed_description = String::from("");
+        for (i, ch) in desc.chars().enumerate() {
+            trimmed_description.push(ch);
+
+            if i + 1 >= 250 {
+                break;
+            }
         }
+        item.description = trimmed_description.into();
 
         let current_local: DateTime<Local> = Local::now();
         let datetime = current_local.format("%d-%m-%Y • %H:%M").to_string();
