@@ -1,4 +1,3 @@
-// use std::env;
 use std::fs;
 
 use chrono::{DateTime, Local};
@@ -97,15 +96,11 @@ pub fn callback_declare_put_list_item(app: &AppWindow) {
         }
 
         // Do not allow more than 250 characters in the description
-        let mut trimmed_description = String::from("");
-        for (i, ch) in desc.chars().enumerate() {
-            trimmed_description.push(ch);
-
-            if i + 1 >= 250 {
-                break;
-            }
+        // [see note below]
+        let chars = desc.chars().collect::<Vec<char>>();
+        if chars.len() >= 250 {
+            item.description = chars[0..250].iter().collect::<String>().into();
         }
-        item.description = trimmed_description.into();
 
         let current_local: DateTime<Local> = Local::now();
         let datetime = current_local.format("%d-%m-%Y • %H:%M").to_string();
@@ -120,3 +115,7 @@ pub fn callback_declare_put_list_item(app: &AppWindow) {
         cfg.set_list_items(items_model.into());
     });
 }
+
+/* SLICE A STRING CONTAINING UNICODE CHARS:
+https://stackoverflow.com/questions/51982999/slice-a-string-containing-unicode-chars
+*/

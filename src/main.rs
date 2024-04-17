@@ -37,4 +37,7 @@ cargo generate --git ~/Descargas/slint-rust-template --name rust-slint-todolist-
 
 https://github.com/WilkinsonK/todo_app
 https://github.com/tyrsday29/rust_todo_app_slint
+
+SLICE A STRING CONTAINING UNICODE CHARS:
+https://stackoverflow.com/questions/51982999/slice-a-string-containing-unicode-chars
 */
