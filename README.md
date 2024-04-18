@@ -7,7 +7,7 @@
 <hr />
 
 <p style="margin-bottom: 16px;">
-    Rust/Slint desktop demo application that uses the Slint GUI framework and persists data in a simple, database-like binary file, performs a full CRUD, and displays a to-do list in the interface.
+    Rust/Slint desktop demo application that uses the Slint GUI framework and persists data in a database-like binary file, performs a full CRUD, and displays a to-do list in GUI.
 </p>
 
 <br />

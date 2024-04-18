@@ -97,7 +97,7 @@ pub fn callback_declare_put_list_item(app: &AppWindow) {
 
         // Do not allow more than 250 characters in the description
         // [see note below]
-        let chars = desc.chars().collect::<Vec<char>>();
+        let chars = desc.chars().collect::<Vec<_>>();
         if chars.len() > 250 {
             item.description = chars[0..250].iter().collect::<String>().into();
         }
